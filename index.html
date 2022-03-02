@@ -1,0 +1,77 @@
+
+
+
+<script src="lib/vue.min.js"></script>
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    .heading-panel {
+        padding: 10px;
+    }
+
+    .letter-panel{
+        float: left;
+        padding: 10px;
+    }
+
+    .text-area-panel {
+        float: left;
+        padding: 10px;
+    }
+
+    textarea {
+        height: 215px;
+        width: 400px;
+    }
+
+    .under-col {
+        color:orange;
+    }
+
+    .over-col {
+        color: red;
+    }
+
+    .right-col {
+        color: green;
+    }
+
+</style>
+
+<html>
+    <body>
+        <div id="toolApp">
+            <div class="heading-panel">
+                <h1>Anagram Helper Tool</h1>
+                <h4>By @NylePudding</h4>
+            </div>
+            <div class="letter-panel">
+                <div v-for="letter in alphabet">
+                    <span>{{letter}} - </span>
+                    <span>
+                        <b>
+                            {{countLetters(letter,anagram)}}
+                        </b>
+                    </span>
+                    <span v-bind:class="{ 'under-col' : countLetters(letter,answer) < countLetters(letter,anagram), 'over-col' : countLetters(letter,answer) > countLetters(letter,anagram), 'right-col' : countLetters(letter,anagram) == countLetters(letter,answer) }">
+                        <b>
+                            {{countLetters(letter,answer)}}
+                        </b>
+                    </span>
+                </div>
+            </div>
+            <div class="text-area-panel">
+                <div><b>Original Anagram</b></div>
+                <textarea v-model="anagram"></textarea>
+                <div><b>Drafting</b></div>
+                <textarea v-model="answer"></textarea>
+                <div><b>Remaining Letters</b></div>
+                <textarea v-model="remainingLetters"></textarea>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script src="main.js"></script>
